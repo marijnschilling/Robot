@@ -5,7 +5,7 @@
 
 import Foundation
 
-enum Direction {
+enum Direction: Int {
     case north
     case east
     case south
@@ -39,29 +39,13 @@ struct Robot {
     }
 
     private mutating func turnRight() {
-        switch direction {
-        case .north:
-            direction = .east
-        case .east:
-            direction = .south
-        case .south:
-            direction = .west
-        case .west:
-            direction = .north
-        }
+        guard let newDirection = Direction(rawValue: (direction.rawValue + 1) % 4) else { return }
+        direction = newDirection
     }
 
     private mutating func turnLeft() {
-        switch direction {
-        case .north:
-            direction = .west
-        case .east:
-            direction = .north
-        case .south:
-            direction = .east
-        case .west:
-            direction = .south
-        }
+        guard let newDirection = Direction(rawValue: (direction.rawValue + 3) % 4) else { return }
+        direction = newDirection
     }
 
     private mutating func moveForward() {}
