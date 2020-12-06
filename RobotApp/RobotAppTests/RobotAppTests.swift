@@ -19,16 +19,54 @@ class RobotAppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+    func testExampleTurnRight() {
+        var robot = Robot(gridSize: (x: 1, y: 1), position: (x: 0, y: 0), direction: .north)
+
+        robot.move(instructions: "R")
+        XCTAssertEqual(robot.direction, .east)
+        robot.move(instructions: "R")
+        XCTAssertEqual(robot.direction, .south)
+        robot.move(instructions: "R")
+        XCTAssertEqual(robot.direction, .west)
+        robot.move(instructions: "R")
+        XCTAssertEqual(robot.direction, .north)
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testExampleTurnLeft() {
+        var robot = Robot(gridSize: (x: 1, y: 1), position: (x: 0, y: 0), direction: .north)
+
+        robot.move(instructions: "L")
+        XCTAssertEqual(robot.direction, .west)
+        robot.move(instructions: "L")
+        XCTAssertEqual(robot.direction, .south)
+        robot.move(instructions: "L")
+        XCTAssertEqual(robot.direction, .east)
+        robot.move(instructions: "L")
+        XCTAssertEqual(robot.direction, .north)
     }
 
+    func testExample1() {
+//        • Starting the program with a 5x5 room, and start position (1,2,N)
+//        • The instructions RFRFFRFRF will result in the report 1 3 N
+
+        var robot = Robot(gridSize: (x: 5, y: 5), position: (x: 1, y: 2), direction: .north)
+        robot.move(instructions: "RFRFFRFRF")
+
+        XCTAssertEqual(robot.position.x, 1)
+        XCTAssertEqual(robot.position.y, 3)
+        XCTAssertEqual(robot.direction, .north)
+    }
+    
+    func testExample2() {
+//        • Starting the program with a 5x5 room, and start position (0,0,E)
+//        • The instructions RFLFFLRF will result in the report 3 1 E
+
+        var robot = Robot(gridSize: (x: 5, y: 5), position: (x: 0, y: 0), direction: .east)
+        robot.move(instructions: "RFLFFLRF")
+
+        XCTAssertEqual(robot.position.x, 3)
+        XCTAssertEqual(robot.position.y, 1)
+        XCTAssertEqual(robot.direction, .east)
+    }
 }
