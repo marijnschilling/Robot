@@ -46,6 +46,24 @@ class RobotAppTests: XCTestCase {
         XCTAssertEqual(robot.direction, .north)
     }
 
+    func testTurns() {
+        var robot = Robot(gridSize: (x: 1, y: 1), position: (x: 0, y: 0), direction: .north)
+
+        robot.move(instructions: "LL")
+        XCTAssertEqual(robot.direction, .south)
+        robot.move(instructions: "RR")
+        XCTAssertEqual(robot.direction, .north)
+        robot.move(instructions: "LRR")
+        XCTAssertEqual(robot.direction, .east)
+        robot.move(instructions: "RLL")
+        XCTAssertEqual(robot.direction, .north)
+
+        robot.move(instructions: "RLLRLLLLLLRRR")
+        XCTAssertEqual(robot.direction, .east)
+        robot.move(instructions: "RRLLLLLRRRRRLLLRLRLLLRRRRRRRR")
+        XCTAssertEqual(robot.direction, .south)
+    }
+
     func testExample1() {
 //        • Starting the program with a 5x5 room, and start position (1,2,N)
 //        • The instructions RFRFFRFRF will result in the report 1 3 N
