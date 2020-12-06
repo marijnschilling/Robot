@@ -65,67 +65,67 @@ class RobotAppTests: XCTestCase {
     }
 
     func testMoveNorth() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 0, y: 0), direction: .north)
+        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 2), direction: .north)
         robot.move(instructions: "F")
 
-        XCTAssertEqual(robot.position.x, 0)
+        XCTAssertEqual(robot.position.x, 1)
         XCTAssertEqual(robot.position.y, 1)
     }
 
     func testMoveNorthOutOfBounds() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 0, y: 0), direction: .north)
+        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 2), direction: .north)
         robot.move(instructions: "FF")
 
-        XCTAssertEqual(robot.position.x, 0)
+        XCTAssertEqual(robot.position.x, 1)
         XCTAssertEqual(robot.position.y, 1)
     }
 
     func testMoveEast() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 0, y: 0), direction: .east)
+        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 1), direction: .east)
         robot.move(instructions: "F")
 
-        XCTAssertEqual(robot.position.x, 1)
-        XCTAssertEqual(robot.position.y, 0)
+        XCTAssertEqual(robot.position.x, 2)
+        XCTAssertEqual(robot.position.y, 1)
     }
 
     func testMoveEastOutOfBounds() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 0, y: 0), direction: .east)
+        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 1), direction: .east)
         robot.move(instructions: "FF")
 
-        XCTAssertEqual(robot.position.x, 1)
-        XCTAssertEqual(robot.position.y, 0)
+        XCTAssertEqual(robot.position.x, 2)
+        XCTAssertEqual(robot.position.y, 1)
     }
 
     func testMoveSouth() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 0, y: 1), direction: .south)
+        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 1), direction: .south)
         robot.move(instructions: "F")
 
-        XCTAssertEqual(robot.position.x, 0)
-        XCTAssertEqual(robot.position.y, 0)
+        XCTAssertEqual(robot.position.x, 1)
+        XCTAssertEqual(robot.position.y, 2)
     }
 
     func testMoveSouthOutOfBounds() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 0, y: 1), direction: .south)
+        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 1), direction: .south)
         robot.move(instructions: "FF")
 
-        XCTAssertEqual(robot.position.x, 0)
-        XCTAssertEqual(robot.position.y, 0)
+        XCTAssertEqual(robot.position.x, 1)
+        XCTAssertEqual(robot.position.y, 2)
     }
 
     func testMoveWest() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 0), direction: .west)
+        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 2, y: 1), direction: .west)
         robot.move(instructions: "F")
 
-        XCTAssertEqual(robot.position.x, 0)
-        XCTAssertEqual(robot.position.y, 0)
+        XCTAssertEqual(robot.position.x, 1)
+        XCTAssertEqual(robot.position.y, 1)
     }
 
     func testMoveWestOutOfBounds() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 0), direction: .west)
+        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 2, y: 1), direction: .west)
         robot.move(instructions: "FF")
 
-        XCTAssertEqual(robot.position.x, 0)
-        XCTAssertEqual(robot.position.y, 0)
+        XCTAssertEqual(robot.position.x, 1)
+        XCTAssertEqual(robot.position.y, 1)
     }
 
     func testExample1() {
