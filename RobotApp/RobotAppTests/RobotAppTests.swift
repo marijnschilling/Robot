@@ -19,110 +19,117 @@ class RobotAppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-
     func testExampleTurnRight() {
-        var robot = Robot(gridSize: (x: 1, y: 1), position: (x: 0, y: 0), direction: .north)
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 0, y: 0), direction: .north), gridSize: (width: 1, height: 1))
 
-        robot.move(instructions: "R")
+        var robot = robotViewModel.moveRobot(instructions: "R")
         XCTAssertEqual(robot.direction, .east)
-        robot.move(instructions: "R")
+        robot = robotViewModel.moveRobot(instructions: "R")
         XCTAssertEqual(robot.direction, .south)
-        robot.move(instructions: "R")
+        robot = robotViewModel.moveRobot(instructions: "R")
         XCTAssertEqual(robot.direction, .west)
-        robot.move(instructions: "R")
+        robot = robotViewModel.moveRobot(instructions: "R")
         XCTAssertEqual(robot.direction, .north)
     }
 
     func testExampleTurnLeft() {
-        var robot = Robot(gridSize: (x: 1, y: 1), position: (x: 0, y: 0), direction: .north)
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 0, y: 0), direction: .north), gridSize: (width: 1, height: 1))
 
-        robot.move(instructions: "L")
+        var robot = robotViewModel.moveRobot(instructions: "L")
         XCTAssertEqual(robot.direction, .west)
-        robot.move(instructions: "L")
+        robot = robotViewModel.moveRobot(instructions: "L")
         XCTAssertEqual(robot.direction, .south)
-        robot.move(instructions: "L")
+        robot = robotViewModel.moveRobot(instructions: "L")
         XCTAssertEqual(robot.direction, .east)
-        robot.move(instructions: "L")
+        robot = robotViewModel.moveRobot(instructions: "L")
         XCTAssertEqual(robot.direction, .north)
     }
 
     func testTurns() {
-        var robot = Robot(gridSize: (x: 1, y: 1), position: (x: 0, y: 0), direction: .north)
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 0, y: 0), direction: .north), gridSize: (width: 1, height: 1))
 
-        robot.move(instructions: "LL")
+        var robot = robotViewModel.moveRobot(instructions: "LL")
         XCTAssertEqual(robot.direction, .south)
-        robot.move(instructions: "RR")
+        robot = robotViewModel.moveRobot(instructions: "RR")
         XCTAssertEqual(robot.direction, .north)
-        robot.move(instructions: "LRR")
+        robot = robotViewModel.moveRobot(instructions: "LRR")
         XCTAssertEqual(robot.direction, .east)
-        robot.move(instructions: "RLL")
+        robot = robotViewModel.moveRobot(instructions: "RLL")
         XCTAssertEqual(robot.direction, .north)
 
-        robot.move(instructions: "RLLRLLLLLLRRR")
+        robot = robotViewModel.moveRobot(instructions: "RLLRLLLLLLRRR")
         XCTAssertEqual(robot.direction, .east)
-        robot.move(instructions: "RRLLLLLRRRRRLLLRLRLLLRRRRRRRR")
+        robot = robotViewModel.moveRobot(instructions: "RRLLLLLRRRRRLLLRLRLLLRRRRRRRR")
         XCTAssertEqual(robot.direction, .south)
     }
 
     func testMoveNorth() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 2), direction: .north)
-        robot.move(instructions: "F")
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 2), direction: .north), gridSize: (width: 2, height: 2))
+
+        let robot = robotViewModel.moveRobot(instructions: "F")
 
         XCTAssertEqual(robot.position.x, 1)
         XCTAssertEqual(robot.position.y, 1)
     }
 
     func testMoveNorthOutOfBounds() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 2), direction: .north)
-        robot.move(instructions: "FF")
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 2), direction: .north), gridSize: (width: 2, height: 2))
+
+        let robot = robotViewModel.moveRobot(instructions: "FF")
 
         XCTAssertEqual(robot.position.x, 1)
         XCTAssertEqual(robot.position.y, 1)
     }
 
     func testMoveEast() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 1), direction: .east)
-        robot.move(instructions: "F")
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .east), gridSize: (width: 2, height: 2))
+
+        let robot = robotViewModel.moveRobot(instructions: "F")
 
         XCTAssertEqual(robot.position.x, 2)
         XCTAssertEqual(robot.position.y, 1)
     }
 
     func testMoveEastOutOfBounds() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 1), direction: .east)
-        robot.move(instructions: "FF")
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .east), gridSize: (width: 2, height: 2))
+
+        let robot = robotViewModel.moveRobot(instructions: "FF")
 
         XCTAssertEqual(robot.position.x, 2)
         XCTAssertEqual(robot.position.y, 1)
     }
 
     func testMoveSouth() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 1), direction: .south)
-        robot.move(instructions: "F")
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .south), gridSize: (width: 2, height: 2))
+
+        let robot = robotViewModel.moveRobot(instructions: "F")
 
         XCTAssertEqual(robot.position.x, 1)
         XCTAssertEqual(robot.position.y, 2)
     }
 
     func testMoveSouthOutOfBounds() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 1, y: 1), direction: .south)
-        robot.move(instructions: "FF")
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .south), gridSize: (width: 2, height: 2))
+
+        let robot = robotViewModel.moveRobot(instructions: "FF")
 
         XCTAssertEqual(robot.position.x, 1)
         XCTAssertEqual(robot.position.y, 2)
     }
 
     func testMoveWest() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 2, y: 1), direction: .west)
-        robot.move(instructions: "F")
+        let robotViewModel = RobotViewModel(robot: Robot( position: (x: 2, y: 1), direction: .west), gridSize: (width: 2, height: 2))
+
+        let robot = robotViewModel.moveRobot(instructions: "F")
 
         XCTAssertEqual(robot.position.x, 1)
         XCTAssertEqual(robot.position.y, 1)
     }
 
     func testMoveWestOutOfBounds() {
-        var robot = Robot(gridSize: (x: 2, y: 2), position: (x: 2, y: 1), direction: .west)
-        robot.move(instructions: "FF")
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 2, y: 1), direction: .west), gridSize: (width: 2, height: 2))
+
+        let robot = robotViewModel.moveRobot(instructions: "FF")
 
         XCTAssertEqual(robot.position.x, 1)
         XCTAssertEqual(robot.position.y, 1)
@@ -132,8 +139,9 @@ class RobotAppTests: XCTestCase {
 //        • Starting the program with a 5x5 room, and start position (1,2,N)
 //        • The instructions RFRFFRFRF will result in the report 1 3 N
 
-        var robot = Robot(gridSize: (x: 5, y: 5), position: (x: 1, y: 2), direction: .north)
-        robot.move(instructions: "RFRFFRFRF")
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 2), direction: .north), gridSize: (width: 5, height: 5))
+
+        let robot = robotViewModel.moveRobot(instructions: "RFRFFRFRF")
 
         XCTAssertEqual(robot.position.x, 1)
         XCTAssertEqual(robot.position.y, 3)
@@ -144,8 +152,9 @@ class RobotAppTests: XCTestCase {
 //        • Starting the program with a 5x5 room, and start position (0,0,E)
 //        • The instructions RFLFFLRF will result in the report 3 1 E
 
-        var robot = Robot(gridSize: (x: 5, y: 5), position: (x: 0, y: 0), direction: .east)
-        robot.move(instructions: "RFLFFLRF")
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 0, y: 0), direction: .east), gridSize: (width: 5, height: 5))
+
+        let robot = robotViewModel.moveRobot(instructions: "RFLFFLRF")
 
         XCTAssertEqual(robot.position.x, 3)
         XCTAssertEqual(robot.position.y, 1)
