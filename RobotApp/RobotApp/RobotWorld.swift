@@ -48,5 +48,20 @@ struct Robot {
         direction = newDirection
     }
 
-    private mutating func moveForward() {}
+    private mutating func moveForward() {
+        switch direction {
+        case .north:
+            guard position.y < (gridSize.y - 1) else { return }
+            position.y += 1
+        case .east:
+            guard position.x < (gridSize.x - 1) else { return }
+            position.x += 1
+        case .south:
+            guard position.y > 0 else { return }
+            position.y -= 1
+        case .west:
+            guard position.x > 0 else { return }
+            position.x -= 1
+        }
+    }
 }
