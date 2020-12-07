@@ -38,7 +38,7 @@ class RobotViewModel {
             }
         }
 
-        return "Final position is: \(robot.position.x) \(robot.position.y) \(robot.direction.rawValue)"
+        return "Final position is: \(robot.position.x) \(robot.position.y) \(robot.direction.name)"
     }
 
     private func turnRobotRight() {

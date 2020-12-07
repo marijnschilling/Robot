@@ -83,13 +83,19 @@ class InputViewController: UIViewController {
         return input
     }()
 
-    lazy var directionInput: UITextField = {
-        let input = UITextField()
-        input.translatesAutoresizingMaskIntoConstraints = false
-        input.placeholder = "Direction"
-        input.textAlignment = .center
+    lazy var directionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
 
-        input.autocorrectionType = .no
+        return label
+    }()
+
+    lazy var directionInput: DirectionInputView = {
+       let input = DirectionInputView()
+        input.translatesAutoresizingMaskIntoConstraints = false
+
         return input
     }()
 
@@ -108,7 +114,9 @@ class InputViewController: UIViewController {
         input.placeholder = "Instructions"
         input.textAlignment = .center
 
+        input.autocapitalizationType = .allCharacters
         input.autocorrectionType = .no
+
         return input
     }()
 
@@ -166,13 +174,13 @@ class InputViewController: UIViewController {
                                                        gridSizeInputStackView,
                                                        positionLabel,
                                                        robotPositionInputStackView,
+                                                       directionLabel,
                                                        directionInput,
                                                        instructionsLabel,
                                                        instructionsInput])
+
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 20
 
         scrollView.addSubview(stackView)
 
@@ -182,6 +190,13 @@ class InputViewController: UIViewController {
         stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
 
         stackView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
+
+        stackView.setCustomSpacing(10, after: gridLabel)
+        stackView.setCustomSpacing(20, after: gridSizeInputStackView)
+        stackView.setCustomSpacing(10, after: positionLabel)
+        stackView.setCustomSpacing(20, after: robotPositionInputStackView)
+        stackView.setCustomSpacing(20, after: directionInput)
+        stackView.setCustomSpacing(10, after: instructionsLabel)
     }
 }
 
@@ -193,7 +208,7 @@ extension InputViewController {
                                        gridHeight: heightInput.text,
                                        xPosition: positionXInput.text,
                                        yPosition: positionYInput.text,
-                                       direction: directionInput.text,
+                                       direction: directionInput.direction,
                                        instructions: instructionsInput.text)
 
         let result = viewModel.validate()
@@ -209,8 +224,10 @@ extension InputViewController {
     private func setLabelTitles() {
         gridLabel.text = "Input values between 1-9"
         gridLabel.textColor = .black
-        positionLabel.text = "Input values between 1 and the grid size"
+        positionLabel.text = "Input values between 0 and the grid size"
         positionLabel.textColor = .black
+        directionLabel.text = "Select a direction the robot is facing"
+        directionLabel.textColor = .black
         instructionsLabel.text = "L to turn left, R to turn right and F to move forward"
         instructionsLabel.textColor = .black
     }
@@ -224,8 +241,7 @@ extension InputViewController {
             positionLabel.text = error.errorMessage
             positionLabel.textColor = .red
         case .invalidDirection:
-            print("invalid direction")
-                //TODO: Make custom control
+            fatalError("DirectionInputView should return only valid values")
         case .invalidInstructions:
             instructionsLabel.text = error.errorMessage
             instructionsLabel.textColor = .red

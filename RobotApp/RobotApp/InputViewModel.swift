@@ -38,7 +38,7 @@ struct InputViewModel {
     let gridHeight: String?
     let xPosition: String?
     let yPosition: String?
-    let direction: String?
+    let direction: Int?
     let instructions: String?
 
     func validate() -> InputValidationResult {
@@ -47,7 +47,7 @@ struct InputViewModel {
         guard let xPosition = xPosition, let x = Int(xPosition), x >= 0 && x <= (width - 1) else { return .failure(.invalidXPosition) }
         guard let yPosition = yPosition, let y = Int(yPosition), y >= 0 && y <= (height - 1) else { return .failure(.invalidYPosition) }
 
-        guard let direction = direction, let rawDirection = Int(direction), let validDirection = Direction(rawValue: rawDirection) else { return .failure(.invalidDirection)}
+        guard let rawDirection = direction, let validDirection = Direction(rawValue: rawDirection) else { return .failure(.invalidDirection)}
         guard let instructions = instructions?.uppercased(), (instructions.allSatisfy { "LRF".contains($0) } == true) else { return .failure(.invalidInstructions)}
 
         let robot = Robot(position: (x: x, y: y), direction: validDirection)

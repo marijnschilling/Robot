@@ -13,6 +13,7 @@
 		D197B86E2751D91CD421D578 /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BAF682595382982E405C /* Robot.swift */; };
 		D197B872982D0996C9E8DCD4 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B3B7B881048D99842A24 /* InputViewController.swift */; };
 		D197BAB62DB76C6E75B730C3 /* InputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B8232E370466E0F5B514 /* InputViewModel.swift */; };
+		D197BAE8B9B4FAE22BD7958F /* DirectionInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BE840DB8A237746FFE85 /* DirectionInputView.swift */; };
 		D197BB0F3965185B5A37BEBF /* InputViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B6A58AC7D6B4FF660CE1 /* InputViewModelTests.swift */; };
 		D197BF2459B5425A61E3EC66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B8E2B25B2CC0736140F1 /* SceneDelegate.swift */; };
 		D197BFBD9F4C1A2C20DE14C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BD38232A8B3270B8B0F8 /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 		D197BAF682595382982E405C /* Robot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
 		D197BD38232A8B3270B8B0F8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D197BD69535E231379147B0B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D197BE840DB8A237746FFE85 /* DirectionInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionInputView.swift; sourceTree = "<group>"; };
 		E68E6D6C257CFE50005CD14E /* RobotApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobotApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E68E6D82257CFE52005CD14E /* RobotAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RobotAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E68E6D86257CFE52005CD14E /* RobotViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotViewModelTests.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				D197B3B7B881048D99842A24 /* InputViewController.swift */,
 				D197B8232E370466E0F5B514 /* InputViewModel.swift */,
 				D197B1B2A8AE234A5053010C /* Resources */,
+				D197BE840DB8A237746FFE85 /* DirectionInputView.swift */,
 			);
 			path = RobotApp;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				D197BAB62DB76C6E75B730C3 /* InputViewModel.swift in Sources */,
 				D197BFBD9F4C1A2C20DE14C9 /* AppDelegate.swift in Sources */,
 				D197BF2459B5425A61E3EC66 /* SceneDelegate.swift in Sources */,
+				D197BAE8B9B4FAE22BD7958F /* DirectionInputView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

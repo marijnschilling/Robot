@@ -6,10 +6,24 @@
 import Foundation
 
 enum Direction: Int {
+
     case north
     case east
     case south
     case west
+
+    var name: String {
+       switch self {
+       case .north:
+           return "North"
+       case .east:
+           return "East"
+       case .south:
+           return "South"
+       case .west:
+           return "West"
+       }
+    }
 }
 
 struct Robot {

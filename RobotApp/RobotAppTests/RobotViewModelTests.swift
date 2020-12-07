@@ -24,7 +24,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 0 0 1")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 East")
     }
 
     func testExampleTurnLeft() {
@@ -32,7 +32,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 0 0 3")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 West")
     }
 
     func testTurns() {
@@ -40,7 +40,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 0 0 2")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 South")
     }
 
     func testMoveNorth() {
@@ -48,7 +48,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 0 0 0")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 North")
     }
 
     func testMoveNorthOutOfBounds() {
@@ -56,7 +56,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 0 0 0")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 North")
     }
 
     func testMoveEast() {
@@ -64,7 +64,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 1 0 1")
+        XCTAssertEqual(endPosition, "Final position is: 1 0 East")
     }
 
     func testMoveEastOutOfBounds() {
@@ -72,7 +72,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 1 0 1")
+        XCTAssertEqual(endPosition, "Final position is: 1 0 East")
     }
 
     func testMoveSouth() {
@@ -80,7 +80,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 0 1 2")
+        XCTAssertEqual(endPosition, "Final position is: 0 1 South")
     }
 
     func testMoveSouthOutOfBounds() {
@@ -88,7 +88,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 0 1 2")
+        XCTAssertEqual(endPosition, "Final position is: 0 1 South")
     }
 
     func testMoveWest() {
@@ -96,7 +96,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 0 0 3")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 West")
     }
 
     func testMoveWestOutOfBounds() {
@@ -104,7 +104,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 0 0 3")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 West")
     }
 
     func testExample1() {
@@ -115,7 +115,7 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 1 3 0")
+        XCTAssertEqual(endPosition, "Final position is: 1 3 North")
     }
 
     func testExample2() {
@@ -126,6 +126,6 @@ class RobotAppTests: XCTestCase {
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 3 1 1")
+        XCTAssertEqual(endPosition, "Final position is: 3 1 East")
     }
 }
