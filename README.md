@@ -7,10 +7,15 @@
 
 ### Manual
 With this app you can control a robot. The robot is located on a two-dimensional grid. The robot moves around on the grid by parsing a string of commands:
+
 • L: Turn left
+
 • R: Turn right
+
 • F: Walk forward
-Example string: LFFRFRFRFF
+
+Example string: `LFFRFRFRFF`
+
 When the robot runs out of commands, it shall report what square (x,y) it’s located at, and what direction it’s facing. When the app starts, you can specify the size of the grid, the position where the robot is located and which direction it is facing and the string of instructions.
 Select "Go" to perform the Robot movements and see the final position of the Robot in an alert.
 
