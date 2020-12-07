@@ -10,7 +10,6 @@ class InputViewController: UIViewController {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.bounces = false
 
         return scrollView
     }()
@@ -64,7 +63,7 @@ class InputViewController: UIViewController {
     lazy var positionXInput: UITextField = {
         let input = UITextField()
         input.translatesAutoresizingMaskIntoConstraints = false
-        input.placeholder = "X position"
+        input.placeholder = "X"
         input.textAlignment = .center
 
         input.keyboardType = .numberPad
@@ -75,7 +74,7 @@ class InputViewController: UIViewController {
     lazy var positionYInput: UITextField = {
         let input = UITextField()
         input.translatesAutoresizingMaskIntoConstraints = false
-        input.placeholder = "Y position"
+        input.placeholder = "Y"
         input.textAlignment = .center
 
         input.keyboardType = .numberPad
@@ -155,6 +154,9 @@ class InputViewController: UIViewController {
     }
 
     func addSubviewsAndConstraints() {
+        let smallMargin: CGFloat = 10.0
+        let largeMargin: CGFloat = 20.0
+        
         view.addSubview(scrollView)
 
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -184,19 +186,19 @@ class InputViewController: UIViewController {
 
         scrollView.addSubview(stackView)
 
-        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
-        stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -10).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: smallMargin).isActive = true
+        stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: largeMargin).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -smallMargin).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -largeMargin).isActive = true
 
-        stackView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
+        stackView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -largeMargin).isActive = true
 
-        stackView.setCustomSpacing(10, after: gridLabel)
-        stackView.setCustomSpacing(20, after: gridSizeInputStackView)
-        stackView.setCustomSpacing(10, after: positionLabel)
-        stackView.setCustomSpacing(20, after: robotPositionInputStackView)
-        stackView.setCustomSpacing(20, after: directionInput)
-        stackView.setCustomSpacing(10, after: instructionsLabel)
+        stackView.setCustomSpacing(smallMargin, after: gridLabel)
+        stackView.setCustomSpacing(largeMargin, after: gridSizeInputStackView)
+        stackView.setCustomSpacing(smallMargin, after: positionLabel)
+        stackView.setCustomSpacing(largeMargin, after: robotPositionInputStackView)
+        stackView.setCustomSpacing(largeMargin, after: directionInput)
+        stackView.setCustomSpacing(smallMargin, after: instructionsLabel)
     }
 }
 
@@ -217,18 +219,20 @@ extension InputViewController {
         case .success(let robotViewModel):
             showResultAlert(for: robotViewModel)
         case .failure(let error):
-            showError(error)
+            UIView.animate(withDuration: 0.2) {
+                self.showError(error)
+            }
         }
     }
 
     private func setLabelTitles() {
-        gridLabel.text = "Input values between 1-9"
+        gridLabel.text = "Create grid"
         gridLabel.textColor = .black
-        positionLabel.text = "Input values between 0 and the grid size"
+        positionLabel.text = "Enter robot start position"
         positionLabel.textColor = .black
-        directionLabel.text = "Select a direction the robot is facing"
+        directionLabel.text = "Select robot start direction"
         directionLabel.textColor = .black
-        instructionsLabel.text = "L to turn left, R to turn right and F to move forward"
+        instructionsLabel.text = "Enter robot instructions"
         instructionsLabel.textColor = .black
     }
 
@@ -264,7 +268,7 @@ extension InputViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
 
         guard let userInfo = notification.userInfo,
-              var keyboardFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else { return }
+              var keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
 
         keyboardFrame = view.convert(keyboardFrame, from: nil)
 

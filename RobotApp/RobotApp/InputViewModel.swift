@@ -16,17 +16,17 @@ enum InputError: Error {
     var errorMessage: String {
         switch self {
         case .invalidGridWidth:
-            return "Enter a value between 1-9"
+            return "Enter a width value between 1-9"
         case .invalidGridHeight:
-            return "Enter a value between 1-9"
+            return "Enter a height value between 1-9"
         case .invalidXPosition:
-            return "Enter a value between 0 and the width of the grid"
+            return "Enter an x value between 0 and the width of the grid"
         case .invalidYPosition:
-            return "Enter a value between 0 and the height of the grid"
+            return "Enter a y value between 0 and the height of the grid"
         case .invalidDirection:
             return "Enter N for north E for East S for South or W for West"
         case .invalidInstructions:
-            return "Enter a string containing L F or R"
+            return "Enter L to turn Left, R to turn right, F to move forward"
         }
     }
 }
