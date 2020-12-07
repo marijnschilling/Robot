@@ -44,67 +44,67 @@ class RobotAppTests: XCTestCase {
     }
 
     func testMoveNorth() {
-        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 2), direction: .north), instructions: "F", gridSize: (width: 2, height: 2))
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 0, y: 1), direction: .north), instructions: "F", gridSize: (width: 2, height: 2))
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 1 1 0")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 0")
     }
 
     func testMoveNorthOutOfBounds() {
-        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 2), direction: .north), instructions: "FF", gridSize: (width: 2, height: 2))
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 0, y: 1), direction: .north), instructions: "FF", gridSize: (width: 2, height: 2))
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 1 1 0")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 0")
     }
 
     func testMoveEast() {
-        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .east), instructions: "F", gridSize: (width: 2, height: 2))
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 0, y: 0), direction: .east), instructions: "F", gridSize: (width: 2, height: 2))
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 2 1 1")
+        XCTAssertEqual(endPosition, "Final position is: 1 0 1")
     }
 
     func testMoveEastOutOfBounds() {
-        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .east), instructions: "FF",  gridSize: (width: 2, height: 2))
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 0, y: 0), direction: .east), instructions: "FF",  gridSize: (width: 2, height: 2))
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 2 1 1")
+        XCTAssertEqual(endPosition, "Final position is: 1 0 1")
     }
 
     func testMoveSouth() {
-        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .south), instructions: "F", gridSize: (width: 2, height: 2))
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 0, y: 0), direction: .south), instructions: "F", gridSize: (width: 2, height: 2))
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 1 2 2")
+        XCTAssertEqual(endPosition, "Final position is: 0 1 2")
     }
 
     func testMoveSouthOutOfBounds() {
-        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .south), instructions: "FF", gridSize: (width: 2, height: 2))
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 0, y: 0), direction: .south), instructions: "FF", gridSize: (width: 2, height: 2))
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 1 2 2")
+        XCTAssertEqual(endPosition, "Final position is: 0 1 2")
     }
 
     func testMoveWest() {
-        let robotViewModel = RobotViewModel(robot: Robot( position: (x: 2, y: 1), direction: .west), instructions: "F", gridSize: (width: 2, height: 2))
+        let robotViewModel = RobotViewModel(robot: Robot( position: (x: 1, y: 0), direction: .west), instructions: "F", gridSize: (width: 2, height: 2))
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 1 1 3")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 3")
     }
 
     func testMoveWestOutOfBounds() {
-        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 2, y: 1), direction: .west), instructions: "FF", gridSize: (width: 2, height: 2))
+        let robotViewModel = RobotViewModel(robot: Robot(position: (x: 1, y: 0), direction: .west), instructions: "FF", gridSize: (width: 2, height: 2))
 
         let endPosition = robotViewModel.moveRobot()
 
-        XCTAssertEqual(endPosition, "Final position is: 1 1 3")
+        XCTAssertEqual(endPosition, "Final position is: 0 0 3")
     }
 
     func testExample1() {

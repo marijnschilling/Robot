@@ -54,16 +54,16 @@ class RobotViewModel {
     private func moveRobotForward() {
         switch robot.direction {
         case .north:
-            guard robot.position.y > 1 else { return }
+            guard robot.position.y > 0 else { return }
             robot.position.y -= 1
         case .east:
-            guard robot.position.x < gridSize.width else { return }
+            guard robot.position.x < (gridSize.width - 1) else { return }
             robot.position.x += 1
         case .south:
-            guard robot.position.y < gridSize.height else { return }
+            guard robot.position.y < (gridSize.height - 1) else { return }
             robot.position.y += 1
         case .west:
-            guard robot.position.x > 1 else { return }
+            guard robot.position.x > 0 else { return }
             robot.position.x -= 1
         }
     }

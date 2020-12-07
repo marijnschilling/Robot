@@ -33,31 +33,27 @@ class InputViewModelTestsTests: XCTestCase {
     }
 
     func testValidateXPosition() {
-        let inputZero = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "0", yPosition: "0", direction: "0", instructions: "")
-        XCTAssertEqual(inputZero.validate(), InputValidationResult.failure(.invalidXPosition))
-        let inputBiggerThenGridWidth = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "3", yPosition: "0", direction: "0", instructions: "")
+        let inputBiggerThenGridWidth = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "2", yPosition: "0", direction: "0", instructions: "")
         XCTAssertEqual(inputBiggerThenGridWidth.validate(), InputValidationResult.failure(.invalidXPosition))
     }
 
     func testValidateYPosition() {
-        let inputZero = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "2", yPosition: "0", direction: "0", instructions: "")
-        XCTAssertEqual(inputZero.validate(), InputValidationResult.failure(.invalidYPosition))
-        let inputBiggerThenGridHeight = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "2", yPosition: "3", direction: "0", instructions: "")
+        let inputBiggerThenGridHeight = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "0", yPosition: "2", direction: "0", instructions: "")
         XCTAssertEqual(inputBiggerThenGridHeight.validate(), InputValidationResult.failure(.invalidYPosition))
     }
 
     func testValidateDirection() {
-        let inputInvalidDirection = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "2", yPosition: "2", direction: "5", instructions: "")
+        let inputInvalidDirection = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "1", yPosition: "1", direction: "5", instructions: "")
         XCTAssertEqual(inputInvalidDirection.validate(), InputValidationResult.failure(.invalidDirection))
     }
 
     func testValidateInstructions() {
-        let inputZero = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "2", yPosition: "2", direction: "0", instructions: "a")
+        let inputZero = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "1", yPosition: "1", direction: "0", instructions: "a")
         XCTAssertEqual(inputZero.validate(), InputValidationResult.failure(.invalidInstructions))
     }
 
     func testValidInput() {
-        let validInput = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "1", yPosition: "1", direction: "0", instructions: "L")
-        XCTAssertEqual(validInput.validate(), InputValidationResult.success(RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .north), instructions: "L", gridSize: (width: 2, height: 2))))
+        let validInput = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "0", yPosition: "0", direction: "0", instructions: "L")
+        XCTAssertEqual(validInput.validate(), InputValidationResult.success(RobotViewModel(robot: Robot(position: (x: 0, y: 0), direction: .north), instructions: "L", gridSize: (width: 2, height: 2))))
     }
 }
