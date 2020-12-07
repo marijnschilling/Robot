@@ -10,6 +10,8 @@
 		D197B6B7367875677D139C24 /* RobotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B8D3EFA544AA37A604B5 /* RobotViewModel.swift */; };
 		D197B86E2751D91CD421D578 /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197BAF682595382982E405C /* Robot.swift */; };
 		D197B872982D0996C9E8DCD4 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B3B7B881048D99842A24 /* InputViewController.swift */; };
+		D197BAB62DB76C6E75B730C3 /* InputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B8232E370466E0F5B514 /* InputViewModel.swift */; };
+		D197BB0F3965185B5A37BEBF /* InputViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D197B6A58AC7D6B4FF660CE1 /* InputViewModelTests.swift */; };
 		E68E6D70257CFE50005CD14E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68E6D6F257CFE50005CD14E /* AppDelegate.swift */; };
 		E68E6D72257CFE51005CD14E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68E6D71257CFE51005CD14E /* SceneDelegate.swift */; };
 		E68E6D79257CFE52005CD14E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E68E6D78257CFE52005CD14E /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		D197B3B7B881048D99842A24 /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		D197B6A58AC7D6B4FF660CE1 /* InputViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewModelTests.swift; sourceTree = "<group>"; };
+		D197B8232E370466E0F5B514 /* InputViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewModel.swift; sourceTree = "<group>"; };
 		D197B8D3EFA544AA37A604B5 /* RobotViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotViewModel.swift; sourceTree = "<group>"; };
 		D197BAF682595382982E405C /* Robot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
 		E68E6D6C257CFE50005CD14E /* RobotApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobotApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +93,7 @@
 				D197BAF682595382982E405C /* Robot.swift */,
 				D197B8D3EFA544AA37A604B5 /* RobotViewModel.swift */,
 				D197B3B7B881048D99842A24 /* InputViewController.swift */,
+				D197B8232E370466E0F5B514 /* InputViewModel.swift */,
 			);
 			path = RobotApp;
 			sourceTree = "<group>";
@@ -98,6 +103,7 @@
 			children = (
 				E68E6D86257CFE52005CD14E /* RobotAppTests.swift */,
 				E68E6D88257CFE52005CD14E /* Info.plist */,
+				D197B6A58AC7D6B4FF660CE1 /* InputViewModelTests.swift */,
 			);
 			path = RobotAppTests;
 			sourceTree = "<group>";
@@ -207,6 +213,7 @@
 				D197B86E2751D91CD421D578 /* Robot.swift in Sources */,
 				D197B6B7367875677D139C24 /* RobotViewModel.swift in Sources */,
 				D197B872982D0996C9E8DCD4 /* InputViewController.swift in Sources */,
+				D197BAB62DB76C6E75B730C3 /* InputViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E68E6D87257CFE52005CD14E /* RobotAppTests.swift in Sources */,
+				D197BB0F3965185B5A37BEBF /* InputViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
