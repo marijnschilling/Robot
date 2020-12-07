@@ -20,6 +20,15 @@ class InputViewController: UIViewController {
         return view
     }()
 
+    lazy var gridLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
+
+        return label
+    }()
+
     lazy var widthInput: UITextField = {
         let input = UITextField()
         input.translatesAutoresizingMaskIntoConstraints = false
@@ -40,6 +49,15 @@ class InputViewController: UIViewController {
         input.keyboardType = .numberPad
 
         return input
+    }()
+
+    lazy var positionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
+
+        return label
     }()
 
     lazy var positionXInput: UITextField = {
@@ -72,6 +90,15 @@ class InputViewController: UIViewController {
 
         input.autocorrectionType = .no
         return input
+    }()
+
+    lazy var instructionsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
+
+        return label
     }()
 
     lazy var instructionsInput: UITextField = {
@@ -108,6 +135,8 @@ class InputViewController: UIViewController {
 
         addSubviewsAndConstraints()
 
+        setLabelTitles()
+
         view.backgroundColor = .white
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -117,9 +146,9 @@ class InputViewController: UIViewController {
     func addSubviewsAndConstraints() {
         view.addSubview(scrollView)
 
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44).isActive = true
 
         let gridSizeInputStackView = UIStackView(arrangedSubviews: [widthInput, heightInput])
@@ -130,7 +159,13 @@ class InputViewController: UIViewController {
         robotPositionInputStackView.axis = .horizontal
         robotPositionInputStackView.distribution = .fillEqually
 
-        let stackView = UIStackView(arrangedSubviews: [gridSizeInputStackView, robotPositionInputStackView, directionInput, instructionsInput])
+        let stackView = UIStackView(arrangedSubviews: [gridLabel,
+                                                       gridSizeInputStackView,
+                                                       positionLabel,
+                                                       robotPositionInputStackView,
+                                                       directionInput,
+                                                       instructionsLabel,
+                                                       instructionsInput])
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
@@ -138,12 +173,12 @@ class InputViewController: UIViewController {
 
         scrollView.addSubview(stackView)
 
-        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
         stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -10).isActive = true
         stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -44).isActive = true
 
-        stackView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        stackView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
 
         view.addSubview(button)
 
@@ -151,14 +186,59 @@ class InputViewController: UIViewController {
         button.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
 
-        buttonBottomAnchor = button.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        buttonBottomAnchor = button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         buttonBottomAnchor?.isActive = true
     }
 }
 
 extension InputViewController {
     @objc func didSelectButton() {
+        setLabelTitles()
 
+        let viewModel = InputViewModel(gridWidth: widthInput.text,
+                                    gridHeight: heightInput.text,
+                                    xPosition: positionXInput.text,
+                                    yPosition: positionYInput.text,
+                                    direction: directionInput.text,
+                                    instructions: instructionsInput.text)
+
+        let result = viewModel.validate()
+
+        switch result {
+        case .success(let robotViewModel):
+            showSuccessAlert(for: robotViewModel)
+        case .failure(let error):
+            showError(error)
+        }
+    }
+
+    private func setLabelTitles() {
+        gridLabel.text = "Input values between 1-9"
+        gridLabel.textColor = .black
+        positionLabel.text = "Input values between 1 and the grid size"
+        positionLabel.textColor = .black
+        instructionsLabel.text = "L to turn left, R to turn right and F to move forward"
+        instructionsLabel.textColor = .black
+    }
+
+    private func showError(_ error: InputError) {
+        switch error {
+        case .invalidGridWidth, .invalidGridHeight:
+            gridLabel.text = error.errorMessage
+            gridLabel.textColor = .red
+        case .invalidXPosition, .invalidYPosition:
+            positionLabel.text = error.errorMessage
+            positionLabel.textColor = .red
+        case .invalidDirection:
+            print("invalid direction")
+            //TODO: Make custom control
+        case .invalidInstructions:
+            instructionsLabel.text = error.errorMessage
+            instructionsLabel.textColor = .red
+        }
+    }
+
+    private func showSuccessAlert(for: RobotViewModel) {
 
     }
 }
