@@ -26,6 +26,9 @@ class InputViewController: UIViewController {
         label.numberOfLines = 0
         label.textAlignment = .center
 
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
+
         return label
     }()
 
@@ -36,6 +39,8 @@ class InputViewController: UIViewController {
         input.textAlignment = .center
 
         input.keyboardType = .numberPad
+        input.font = UIFont.preferredFont(forTextStyle: .body)
+        input.adjustsFontForContentSizeCategory = true
 
         return input
     }()
@@ -47,6 +52,8 @@ class InputViewController: UIViewController {
         input.textAlignment = .center
 
         input.keyboardType = .numberPad
+        input.font = UIFont.preferredFont(forTextStyle: .body)
+        input.adjustsFontForContentSizeCategory = true
 
         return input
     }()
@@ -56,6 +63,9 @@ class InputViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textAlignment = .center
+        
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
 
         return label
     }()
@@ -68,6 +78,9 @@ class InputViewController: UIViewController {
 
         input.keyboardType = .numberPad
 
+        input.font = UIFont.preferredFont(forTextStyle: .body)
+        input.adjustsFontForContentSizeCategory = true
+
         return input
     }()
 
@@ -79,6 +92,9 @@ class InputViewController: UIViewController {
 
         input.keyboardType = .numberPad
 
+        input.font = UIFont.preferredFont(forTextStyle: .body)
+        input.adjustsFontForContentSizeCategory = true
+        
         return input
     }()
 
@@ -87,6 +103,9 @@ class InputViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textAlignment = .center
+
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
 
         return label
     }()
@@ -104,6 +123,9 @@ class InputViewController: UIViewController {
         label.numberOfLines = 0
         label.textAlignment = .center
 
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
+
         return label
     }()
 
@@ -115,6 +137,9 @@ class InputViewController: UIViewController {
 
         input.autocapitalizationType = .allCharacters
         input.autocorrectionType = .no
+
+        input.font = UIFont.preferredFont(forTextStyle: .body)
+        input.adjustsFontForContentSizeCategory = true
 
         return input
     }()
