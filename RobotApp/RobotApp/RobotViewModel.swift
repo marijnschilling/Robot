@@ -13,14 +13,18 @@ enum Instruction: String {
 
 class RobotViewModel {
     private var robot: Robot
+    private var instructions: String
     private let gridSize: (width: Int, height: Int)
 
-    init(robot: Robot, gridSize: (width: Int, height: Int)) {
+    var finalPosition = ""
+
+    init(robot: Robot, instructions: String, gridSize: (width: Int, height: Int)) {
         self.robot = robot
+        self.instructions = instructions
         self.gridSize = gridSize
     }
 
-    func moveRobot(instructions: String) -> Robot {
+    func moveRobot() -> String {
         instructions.forEach {
             switch Instruction(rawValue: String($0)) {
             case .forward:
@@ -34,7 +38,7 @@ class RobotViewModel {
             }
         }
 
-        return robot
+        return "Final position is: \(robot.position.x) \(robot.position.y) \(robot.direction.rawValue)"
     }
 
     private func turnRobotRight() {

@@ -10,6 +10,7 @@ class InputViewController: UIViewController {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.bounces = false
 
         return scrollView
     }()
@@ -135,6 +136,8 @@ class InputViewController: UIViewController {
 
         addSubviewsAndConstraints()
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Go!", style: .plain, target: self, action: #selector(didSelectButton))
+
         setLabelTitles()
 
         view.backgroundColor = .white
@@ -149,7 +152,7 @@ class InputViewController: UIViewController {
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
         let gridSizeInputStackView = UIStackView(arrangedSubviews: [widthInput, heightInput])
         gridSizeInputStackView.axis = .horizontal
@@ -176,18 +179,9 @@ class InputViewController: UIViewController {
         stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
         stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20).isActive = true
         stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -10).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -44).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
 
         stackView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
-
-        view.addSubview(button)
-
-        button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        button.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-
-        buttonBottomAnchor = button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        buttonBottomAnchor?.isActive = true
     }
 }
 
@@ -196,17 +190,17 @@ extension InputViewController {
         setLabelTitles()
 
         let viewModel = InputViewModel(gridWidth: widthInput.text,
-                                    gridHeight: heightInput.text,
-                                    xPosition: positionXInput.text,
-                                    yPosition: positionYInput.text,
-                                    direction: directionInput.text,
-                                    instructions: instructionsInput.text)
+                                       gridHeight: heightInput.text,
+                                       xPosition: positionXInput.text,
+                                       yPosition: positionYInput.text,
+                                       direction: directionInput.text,
+                                       instructions: instructionsInput.text)
 
         let result = viewModel.validate()
 
         switch result {
         case .success(let robotViewModel):
-            showSuccessAlert(for: robotViewModel)
+            showResultAlert(for: robotViewModel)
         case .failure(let error):
             showError(error)
         }
@@ -231,15 +225,22 @@ extension InputViewController {
             positionLabel.textColor = .red
         case .invalidDirection:
             print("invalid direction")
-            //TODO: Make custom control
+                //TODO: Make custom control
         case .invalidInstructions:
             instructionsLabel.text = error.errorMessage
             instructionsLabel.textColor = .red
         }
     }
 
-    private func showSuccessAlert(for: RobotViewModel) {
+    private func showResultAlert(for robotViewModel: RobotViewModel) {
+        let output = robotViewModel.moveRobot()
 
+        let okAction = UIAlertAction(title: "OK", style: .default)
+
+        let alert = UIAlertController(title: "Robot moved", message: output, preferredStyle: .alert)
+        alert.addAction(okAction)
+
+        present(alert, animated: true)
     }
 }
 
@@ -252,18 +253,11 @@ extension InputViewController {
         keyboardFrame = view.convert(keyboardFrame, from: nil)
 
         var contentInset = scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 44
+        contentInset.bottom = keyboardFrame.size.height
         scrollView.contentInset = contentInset
-
-        buttonKeyboardAnchor = button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -keyboardFrame.size.height)
-        buttonBottomAnchor?.isActive = false
-        buttonKeyboardAnchor?.isActive = true
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
         scrollView.contentInset = UIEdgeInsets.zero
-
-        buttonKeyboardAnchor?.isActive = false
-        buttonBottomAnchor?.isActive = true
     }
 }

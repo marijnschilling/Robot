@@ -48,9 +48,9 @@ struct InputViewModel {
         guard let yPosition = yPosition, let y = Int(yPosition), y > 0 && y <= height else { return .failure(.invalidYPosition) }
 
         guard let direction = direction, let rawDirection = Int(direction), let validDirection = Direction(rawValue: rawDirection) else { return .failure(.invalidDirection)}
-        guard let instructions = instructions, (instructions.uppercased().allSatisfy { "LRF".contains($0) } == true) else { return .failure(.invalidInstructions)}
+        guard let instructions = instructions?.uppercased(), (instructions.allSatisfy { "LRF".contains($0) } == true) else { return .failure(.invalidInstructions)}
 
         let robot = Robot(position: (x: x, y: y), direction: validDirection)
-        return .success(RobotViewModel(robot: robot, gridSize: (width: width, height)))
+        return .success(RobotViewModel(robot: robot, instructions: instructions, gridSize: (width: width, height)))
     }
 }

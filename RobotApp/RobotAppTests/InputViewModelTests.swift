@@ -58,6 +58,6 @@ class InputViewModelTestsTests: XCTestCase {
 
     func testValidInput() {
         let validInput = InputViewModel(gridWidth: "2", gridHeight: "2", xPosition: "1", yPosition: "1", direction: "0", instructions: "L")
-        XCTAssertEqual(validInput.validate(), InputValidationResult.success(RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .north), gridSize: (width: 2, height: 2))))
+        XCTAssertEqual(validInput.validate(), InputValidationResult.success(RobotViewModel(robot: Robot(position: (x: 1, y: 1), direction: .north), instructions: "L", gridSize: (width: 2, height: 2))))
     }
 }
