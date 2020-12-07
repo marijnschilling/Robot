@@ -1,5 +1,5 @@
 //
-//  RobotAppTests.swift
+//  RobotViewModelTests.swift
 //  RobotAppTests
 //
 //  Created by Marijn Schilling on 06/12/2020.
