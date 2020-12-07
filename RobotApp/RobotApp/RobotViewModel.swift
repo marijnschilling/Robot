@@ -64,3 +64,9 @@ class RobotViewModel {
         }
     }
 }
+
+extension RobotViewModel: Equatable {
+    static func == (lhs: RobotViewModel, rhs: RobotViewModel) -> Bool {
+        lhs.robot == rhs.robot && lhs.gridSize == rhs.gridSize
+    }
+}

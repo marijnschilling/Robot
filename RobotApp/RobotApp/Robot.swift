@@ -16,3 +16,9 @@ struct Robot {
     var position: (x: Int, y: Int)
     var direction: Direction
 }
+
+extension Robot: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.position == rhs.position && lhs.direction.rawValue == rhs.direction.rawValue
+    }
+}

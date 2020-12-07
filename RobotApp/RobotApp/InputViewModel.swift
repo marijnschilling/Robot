@@ -31,17 +31,26 @@ enum InputError: Error {
     }
 }
 
-typealias InputValidationResult = Result<Bool, InputError>
+typealias InputValidationResult = Result<RobotViewModel, InputError>
 
 struct InputViewModel {
     let gridWidth: Int?
     let gridHeight: Int?
     let xPosition: Int?
     let yPosition: Int?
-    let direction: String?
+    let direction: Int?
     let instructions: String?
 
     func validate() -> InputValidationResult {
-        return .success(true)
+        guard let gridWidth = gridWidth, gridWidth > 0 && gridWidth < 10 else { return .failure(.invalidGridWidth) }
+        guard let gridHeight = gridHeight, gridHeight > 0 && gridHeight < 10 else { return .failure(.invalidGridHeight) }
+        guard let xPosition = xPosition, xPosition > 0 && xPosition <= gridWidth else { return .failure(.invalidXPosition) }
+        guard let yPosition = yPosition, yPosition > 0 && yPosition <= gridHeight else { return .failure(.invalidYPosition) }
+
+        guard let rawDirection = direction, let validDirection = Direction(rawValue: rawDirection) else { return .failure(.invalidDirection)}
+        guard let instructions = instructions, (instructions.uppercased().allSatisfy { "LRF".contains($0) } == true) else { return .failure(.invalidInstructions)}
+
+        let robot = Robot(position: (x: xPosition, y: yPosition), direction: validDirection)
+        return .success(RobotViewModel(robot: robot, gridSize: (width: gridWidth, gridHeight)))
     }
 }
