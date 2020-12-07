@@ -32,6 +32,7 @@ I created Unit Tests for the InputViewModel where the validation of the data is 
 
 
 ### Improvements
+- The Input of the TextFields should be limited, now the input can exceed the size of the field and it doesn't look nice.
 - I would like to improve the design of the InputViewController, right now it's very basic. I could look into making paginated scrollview for each input section where we validate the input in each step.
 - It would be nice when the next textfield automatically get’s selected after you filled in a value of one character for the grid size and robot position input fields, to improve the user flow.
 - Even though it's not part of the assignment, it would be nice to make the movements of the Robot visible. When the input is validated I could show a ViewController with the grid on it where you can see how the robot is moving and where it ends up. I could even remove requiring the input of the instructions and have the user control the movements of the robot from this grid view.
